@@ -28,7 +28,7 @@
 					<li style = "color: black; padding: 0px;">Common</li>
 				<ul>
 			</div>
-			<h1 id = "title">GingerCrate Simulator <b>DX</b></h1>
+			<h1 id = "title" onclick = "Debug()">GingerCrate Simulator <b>DX</b></h1>
 			<h2 id = "subtitle">Welcome to the Crateiverse. In here, your body and mind are worthless. Your goals and ambitions are worthless. You have one purpose. Open crates. Get items. Save the future.</h2>
 		</div>
 		
@@ -231,8 +231,8 @@
 			];
 			
 			function Debug() {
-				SetCoins(coins + 10000000);
-				UpdateInventory();
+				SetCrates(numberofCrates + 1000000000);
+				UpdateCrates();
 			}
 			
 			function OnLoad() {
@@ -314,6 +314,15 @@
 				} else {
 					qazwsxCount = parseInt(GetCookie("qazwsxCount"),10);
 				}
+				if (GetCookie("version") == "") {
+					version = "1.2.1";
+					SetCookie("version",version,720);
+				} else {
+					version = GetCookie("version");
+					if (version != "1.2.1") {
+						version = "1.2.1";
+					}
+				}
 				if (GetCookieString("items") == "") {
 					items = [
 					[["Killbot 9000000 Action Figure",0,0],["Steve Plush",0,0],["Barry The Green Cube Memo Block",0,0]], // Mythic
@@ -341,12 +350,12 @@
 			function OpenCrates() {
 				if (consent == true) {
 					if (numberofCrates > 0) {
-						if (numberofCrates < 1000000000) {
+						if (numberofCrates < 500000000) {
 							crateTickNumber = numberofCrates;
 							SetCrates(0);
 						} else {
-							crateTickNumber = 1000000000;
-							SetCrates(numberofCrates - 1000000000);
+							crateTickNumber = 500000000;
+							SetCrates(numberofCrates - 500000000);
 						}
 						specialFound = 0;
 						for(crateTickNumber; crateTickNumber > 0; crateTickNumber--) {
@@ -355,7 +364,7 @@
 								rarityValue = RandInt(1,100001);
 								if (rarityValue == 1) { // Mythic
 									rarity = 0;
-									specialChance = RandInt(1,100001);
+									specialChance = RandInt(1,10000001);
 									if (specialChance == 1) {
 										qazwsxCount++;
 										SetCookie("qazwsxCount",qazwsxCount,720);
@@ -970,8 +979,8 @@
 			function SetCrates(newNumberOfCrates) {
 				numberofCrates = newNumberOfCrates;
 				SetCookie("numberofCrates",numberofCrates,720);
-				if (numberofCrates >= 1000000000) {
-					openCratesButtonHTML.innerHTML = "<b>Open 1 Billion Crates</b>"
+				if (numberofCrates >= 500000000) {
+					openCratesButtonHTML.innerHTML = "<b>Open 500 Million Crates</b>"
 				} else {
 					openCratesButtonHTML.innerHTML = "<b>Open Crates</b>"
 				}
@@ -1005,8 +1014,8 @@
 			
 			function UpdateCrates() {
 				availableCratesHTML.innerHTML = "Available Crates: <b>" + NumberToString(numberofCrates) + "</b>";
-				if (numberofCrates >= 1000000000) {
-					openCratesButtonHTML.innerHTML = "<b>Open 1 Billion Crates</b>"
+				if (numberofCrates >= 500000000) {
+					openCratesButtonHTML.innerHTML = "<b>Open 500 Million Crates</b>"
 				} else {
 					openCratesButtonHTML.innerHTML = "<b>Open Crates</b>"
 				}
