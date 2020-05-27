@@ -102,10 +102,8 @@
 					<button id = "ch11Button" onclick = "PlayReward(10)" class = "storyButton" disabled = "true"><b>Chapter 11</b></button>
 					<p style = "float: left; padding: 2px;"><b>x1,000 Everything</b></p>
 					<button id = "ch12Button" onclick = "PlayReward(11)" class = "storyButton" disabled = "true"><b>Chapter 12</b></button>
-					<p style = "float: left; padding: 2px;"><b>x5,000 Everything</b></p>
-					<button id = "ch13Button" onclick = "PlayReward(12)" class = "storyButton" disabled = "true"><b>Chapter 13</b></button>
 					<p style = "float: left; padding: 2px;"><b>x10,000 Everything</b></p>
-					<button id = "postGameButton" onclick = "PlayReward(13 + postGameStage)" class = "storyButton" style = "display: none"><b>The End</b></button>
+					<button id = "postGameButton" onclick = "PlayReward(12 + postGameStage)" class = "storyButton" style = "display: none"><b>The End</b></button>
 					<p id = "postGameText" style = "float: left; padding: 2px; display: none;"><b>x1,000,000 Everything</b></p>
 					<button onclick = "StopPlayback()" class = "storyButton" style = "width: auto;"><b>Stop Playback</b></button>
 				</div>
@@ -195,8 +193,7 @@
 			ch10ButtonHTML = document.getElementById("ch10Button");
 			ch11ButtonHTML = document.getElementById("ch11Button");
 			ch12ButtonHTML = document.getElementById("ch12Button");
-			ch13ButtonHTML = document.getElementById("ch13Button");
-			chapterButtons = [ch1ButtonHTML,ch2ButtonHTML,ch3ButtonHTML,ch4ButtonHTML,ch5ButtonHTML,ch6ButtonHTML,ch7ButtonHTML,ch8ButtonHTML,ch9ButtonHTML,ch10ButtonHTML,ch11ButtonHTML,ch12ButtonHTML,ch13ButtonHTML];
+			chapterButtons = [ch1ButtonHTML,ch2ButtonHTML,ch3ButtonHTML,ch4ButtonHTML,ch5ButtonHTML,ch6ButtonHTML,ch7ButtonHTML,ch8ButtonHTML,ch9ButtonHTML,ch10ButtonHTML,ch11ButtonHTML,ch12ButtonHTML];
 			
 			postGameButtonHTML = document.getElementById("postGameButton");
 			postGameTextHTML = document.getElementById("postGameText");
@@ -234,7 +231,12 @@
 			];
 			
 			function Debug() {
-				SetCrates(numberofCrates + 1000000000)
+				for(var i = 0; i < items.length; i++) {
+					for(var j = 0; j < items[i].length; j++) {
+						items[i][j][1] += 100;
+					}
+				}
+				UpdateInventory();
 			}
 			
 			function OnLoad() {
@@ -324,7 +326,7 @@
 					items = GetCookieString("items");
 				}
 				if (GetCookieString("rewardProgress") == "") {
-					rewardProgress = [true,true,true,false,false,false,false,false,false,false,false,false,false];
+					rewardProgress = [true,true,true,false,false,false,false,false,false,false,false,false];
 				} else {
 					rewardProgress = GetCookieString("rewardProgress");
 					for(var i = 0; i < rewardProgress.length; i++) {
@@ -579,7 +581,7 @@
 				if (consent == true) {
 					// Make sure the user is allowed to listen
 					canPlay = false;
-					if (rewardProgress[num] == true || num > 12) {
+					if (rewardProgress[num] == true || num >= 12) {
 						canPlay = true;
 					}
 
@@ -588,11 +590,11 @@
 						audioPlaying = false;
 					}
 					if (audioPlaying == false && canPlay == true) {
-						if (num <= 12) {
+						if (num <= 11) {
 							audio = new Audio("ch" + num + ".wav");
 						} else {
 							SetCoinsPerClick(coinsPerClick + 200);
-							audio = new Audio("end" + (num - 13) + ".wav");
+							audio = new Audio("end" + (num - 12) + ".wav");
 							postGameButtonHTML.disabled = true;
 							if (waitingToReveal == false && postGameStage < 8) {
 								setTimeout(RevealReward,endings[postGameStage][2]);
@@ -796,18 +798,6 @@
 						chapterButtons[10].disabled = false;
 					}
 				}
-				if (failure == false) { // x5,000 Everything
-					for(var i = 0; i < items[0].length; i++) {
-						if (items[0][i][1] < 5000) {
-							failure = true;
-							break;
-						}
-					}
-					if (failure == false) {
-						rewardProgress[11] = true;
-						chapterButtons[11].disabled = false;
-					}
-				}
 				if (failure == false) { // x10,000 Everything
 					for(var i = 0; i < items[0].length; i++) {
 						if (items[0][i][1] < 10000) {
@@ -816,8 +806,8 @@
 						}
 					}
 					if (failure == false) {
-						rewardProgress[12] = true;
-						chapterButtons[12].disabled = false;
+						rewardProgress[11] = true;
+						chapterButtons[11].disabled = false;
 						if (postGameStage == -1 && waitingToReveal == false) {
 							setTimeout(RevealReward,3000);
 							waitingToReveal = true;
