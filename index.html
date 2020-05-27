@@ -212,7 +212,7 @@
 			audioPlaying = false;
 			waitingToReveal = false;
 			
-			sellPrices = [10000,1000,500,10,1,0.1];
+			sellPrices = [5000,500,100,10,1,0.1];
 			rarityColours = ["yellow","orangered","purple","blue","green","black"];
 			rarities = ["Mythic","Legendary","Epic","Rare","Uncommon","Common"];
 			
@@ -231,11 +231,7 @@
 			];
 			
 			function Debug() {
-				for(var i = 0; i < items.length; i++) {
-					for(var j = 0; j < items[i].length; j++) {
-						items[i][j][1] += 100;
-					}
-				}
+				SetCoins(coins + 10000000);
 				UpdateInventory();
 			}
 			
@@ -313,6 +309,11 @@
 				} else {
 					postGameStage = parseInt(GetCookie("postGameStage"),10);
 				}
+				if (GetCookie("qazwsxCount") == "") {
+					qazwsxCount = 0;
+				} else {
+					qazwsxCount = parseInt(GetCookie("qazwsxCount"),10);
+				}
 				if (GetCookieString("items") == "") {
 					items = [
 					[["Killbot 9000000 Action Figure",0,0],["Steve Plush",0,0],["Barry The Green Cube Memo Block",0,0]], // Mythic
@@ -347,12 +348,19 @@
 							crateTickNumber = 1000000000;
 							SetCrates(numberofCrates - 1000000000);
 						}
+						specialFound = 0;
 						for(crateTickNumber; crateTickNumber > 0; crateTickNumber--) {
 							numberOfItems = RandInt(4,7);
 							for(var i = 0; i < numberOfItems; i++) {
 								rarityValue = RandInt(1,100001);
 								if (rarityValue == 1) { // Mythic
 									rarity = 0;
+									specialChance = RandInt(1,100001);
+									if (specialChance == 1) {
+										qazwsxCount++;
+										SetCookie("qazwsxCount",qazwsxCount,720);
+										specialFound++;
+									}
 								} else if (rarityValue >= 2 && rarityValue <= 50) { // Legendary
 									rarity = 1;
 								} else if (rarityValue >= 51 && rarityValue <= 300) { // Epic
@@ -370,6 +378,10 @@
 							}
 						}
 						newString = "";
+						if (specialFound > 0) {
+							newString += "<li style = \"color: brown\">Luke Pencil Holder x" + NumberToString(specialFound) + "</li>";
+							specialFound = 0;
+						}
 						for (var i = 0; i < items.length; i++) {
 							for(var j = 0; j < items[i].length; j++) {
 								if (items[i][j][2] > 0) {
@@ -638,6 +650,9 @@
 			
 			function UpdateInventory() {
 				listHTML = "";
+				if (qazwsxCount > 0) {
+					listHTML += "<li style = \"border-left: 2px solid brown;\">Luke Pencil Holder: <b>" + NumberToString(qazwsxCount) + "</b></li>";
+				}
 				for(var i = 0; i < items.length; i++) {
 					for(var j = 0; j < items[i].length; j++) {
 						if (i == 0) {
@@ -990,6 +1005,11 @@
 			
 			function UpdateCrates() {
 				availableCratesHTML.innerHTML = "Available Crates: <b>" + NumberToString(numberofCrates) + "</b>";
+				if (numberofCrates >= 1000000000) {
+					openCratesButtonHTML.innerHTML = "<b>Open 1 Billion Crates</b>"
+				} else {
+					openCratesButtonHTML.innerHTML = "<b>Open Crates</b>"
+				}
 			}
 			
 			function UpdateCratePrice() {
