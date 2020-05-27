@@ -8,7 +8,7 @@
 		<title>GingerCrate Simulator DX</title>
 		<meta name = "description" content = "Open crates. Get items. Save the future.">
 		<meta name = "keywords" content = "Gingerfork,FlamingYeti,Crates,GingerCrate,Ginger,Loot,Crate">
-		<meta name="author" content="John Doe,Harry Wright,FlamingYeti,FlamingYeti_">
+		<meta name="author" content="Harry Wright,FlamingYeti,FlamingYeti_">
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		
@@ -28,7 +28,7 @@
 					<li style = "color: black; padding: 0px;">Common</li>
 				<ul>
 			</div>
-			<h1 id = "title" onclick = "Debug()">GingerCrate Simulator <b>DX</b></h1>
+			<h1 id = "title">GingerCrate Simulator <b>DX</b></h1>
 			<h2 id = "subtitle">Welcome to the Crateiverse. In here, your body and mind are worthless. Your goals and ambitions are worthless. You have one purpose. Open crates. Get items. Save the future.</h2>
 		</div>
 		
@@ -38,7 +38,9 @@
 				<h3><b>Crates</b></h3>
 				<ul>
 					<li id = "availableCrates">Available Crates:</li>
-					<button id = "openCratesButton" onclick = "OpenCrates()"><b>Open Crates</b></button>
+					<button id = "openCratesButton" onclick = "OpenCrates(false)" style = "float: left; margin-right: 4px;"><b>Open All Crates</b></button>
+					<button id = "customOpenButton" onclick = "OpenCrates(true)" style = "float: left;"><b>Open 1 Crate</b></button>
+					<input type = "number" id = "customCounter" name = "customCounter" value = "1" min = "0" step = "10" onchange = "UpdateCustomSell()" style = "width: 60px; margin: 0px;">
 				</ul>
 				<h3><b>Coins</b></h3>
 					<ul>
@@ -55,7 +57,7 @@
 				<div class = "box" style = "float: inherit; width: 97%;"> <!--Shop-->
 					<h3><b>Shop</b></h3>
 					<button id = "crateBuyButton" onclick = "BuyCrate()"><b>Buy Crate</b></button>
-					<button  onclick = "BuyAll()"><b>Buy All</b></button>
+					<button onclick = "BuyAll()"><b>Buy All</b></button>
 					<input type = "checkbox" id = "autoBuy" name = "autoBuy" value = "autoBuy" checked = "true" onclick = "ToggleAutoBuy()">
 					<label for = "autoBuy">Auto-Buy</label>
 					<h3><b>Sell</b></h3>
@@ -151,6 +153,8 @@
 			
 			availableCratesHTML = document.getElementById("availableCrates");
 			openCratesButtonHTML = document.getElementById("openCratesButton");
+			customCounterHTML = document.getElementById("customCounter");
+			customOpenButtonHTML = document.getElementById("customOpenButton");
 			
 			numberOfCoinsHTML = document.getElementById("numberOfCoins");
 			coinsPerClickHTML = document.getElementById("coinsPerClick");
@@ -231,7 +235,7 @@
 			];
 			
 			function Debug() {
-				SetCrates(numberofCrates + 1000000000);
+				SetCrates(numberofCrates + 1000000);
 				UpdateCrates();
 			}
 			
@@ -347,16 +351,26 @@
 			
 			
 			
-			function OpenCrates() {
+			function OpenCrates(custom) {
 				if (consent == true) {
-					if (numberofCrates > 0) {
+					if (custom == false) {
 						if (numberofCrates < 500000000) {
 							crateTickNumber = numberofCrates;
 							SetCrates(0);
 						} else {
 							crateTickNumber = 500000000;
-							SetCrates(numberofCrates - 500000000);
+							SetCrates(numberofCrates - crateTickNumber);
 						}
+					} else {
+						if (parseInt(customCounterHTML.value,10) <= numberofCrates) {
+							crateTickNumber = parseInt(customCounterHTML.value,10);
+							SetCrates(numberofCrates - crateTickNumber);
+						} else {
+							crateTickNumber = numberofCrates;
+							SetCrates(0);
+						}
+					}
+					if (crateTickNumber > 0) {
 						specialFound = 0;
 						for(crateTickNumber; crateTickNumber > 0; crateTickNumber--) {
 							numberOfItems = RandInt(4,7);
@@ -929,6 +943,14 @@
 					RevealReward();
 					
 					postGameButtonHTML.disabled = true;
+				}
+			}
+			
+			function UpdateCustomSell() {
+				if (parseInt(customCounterHTML.value,10) == 1) {
+					customOpenButtonHTML.innerHTML = "<b>Open " + NumberToString(parseInt(customCounterHTML.value,10)) + " Crate</b>"
+				} else {
+					customOpenButtonHTML.innerHTML = "<b>Open " + NumberToString(parseInt(customCounterHTML.value,10)) + " Crates</b>"
 				}
 			}
 			
