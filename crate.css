@@ -1,0 +1,199 @@
+html {
+  font-size: 16px;
+}
+body {
+  background-color: #FBF7F5;
+  padding: 0rem;
+  margin: 0rem;
+  font-family: Bahnschrift, sans-serif;
+  font-size: 1rem;
+}
+h1,
+h2,
+h3 {
+  color: #ff9000;
+}
+h1 {
+  font-size: 5rem;
+  margin: 0rem;
+}
+h2 {
+  font-size: 1.125rem;
+  margin: 0.125rem;
+  padding-left: 7px;
+  color: #000000;
+}
+h3 {
+  margin: 0.125rem;
+  font-weight: bold;
+}
+p,
+label {
+  margin: 0rem;
+  font-size: 1rem;
+}
+ul {
+  list-style-type: none;
+  margin: 0rem;
+  padding: 0rem;
+  margin-bottom: 0.5rem;
+}
+li {
+  margin: 0rem;
+  padding-bottom: 0.25rem;
+}
+input,
+select {
+  border: 2px solid #daaaff;
+  border-radius: 0.25rem;
+}
+select {
+  width: 100%;
+}
+a.button {
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  margin: 0 0.3rem 0.3rem 0;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: Bahnschrift, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff9000;
+  text-align: center;
+  transition: all 0.2s;
+}
+a.button:hover {
+  background-color: #cc7300;
+}
+#footer {
+  bottom: 0rem;
+  margin: 0rem;
+  position: initial;
+  padding: 1rem;
+  width: 100%;
+  background-color: #ff9000;
+  text-align: center;
+}
+#inventoryList {
+  font-size: 1rem;
+}
+#inventoryList .item-name {
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 0.125rem solid #daaaff;
+  margin-bottom: 0.25rem;
+  margin-top: 1rem;
+}
+.container {
+  margin: 1rem;
+}
+.titles {
+  display: flex;
+  flex-direction: column;
+}
+.crate-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-content: stretch;
+}
+.row {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.row input {
+  width: 4rem;
+}
+.row input,
+.row a,
+.row p {
+  margin-right: 0.5rem;
+}
+.item {
+  flex-grow: 1;
+}
+.box {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 5px solid #daaaff;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+.legend {
+  font-size: 1.125rem;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+.legend ul {
+  list-style-type: none;
+  display: inline-flex;
+  margin: 0rem;
+  padding: 0rem;
+  font-weight: bold;
+}
+.legend li {
+  display: block;
+  padding: 0.3rem 1.2rem;
+  margin: 0 0.3rem 0.3rem 0;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+.legend .mythic {
+  background-color: gold;
+}
+.legend .legendary {
+  background-color: orangered;
+}
+.legend .epic {
+  background-color: purple;
+}
+.legend .rare {
+  background-color: blue;
+}
+.legend .uncommon {
+  background-color: green;
+}
+.legend .common {
+  background-color: #696969;
+}
+.storyButton {
+  margin: 1px;
+  width: 30%;
+}
+.footerList {
+  display: inline;
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0rem;
+}
+.footerListItem {
+  display: inline;
+  text-align: center;
+  padding: 0rem;
+  padding-left: 0rem;
+}
+.mythic {
+  color: gold;
+}
+.legendary {
+  color: orangered;
+}
+.epic {
+  color: purple;
+}
+.rare {
+  color: blue;
+}
+.uncommon {
+  color: green;
+}
+.common {
+  color: #696969;
+}

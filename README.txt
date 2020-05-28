@@ -1,3 +1,5 @@
+# GingerCrate Simulator DX
+
 Hello! I'll keep this all formal and generic to sound more professional than I am. GingerCrate Simulator DX is open source, in that I don't mind you downloading the files, modifying them, having a look around at the code etc. That's all cool and great. There's just a couple of points to keep in mind.
 
 1. Don't re-host this site. I did in fact make it, so I plan on being the one to host it. I'd love to see any changes you make, and if they're good even add them to the site itself!
