@@ -1,0 +1,249 @@
+@gf-orange: #ff9000;
+@gf-orange-dark: darken(@gf-orange, 10%);
+@gf-purple: #6000aa;
+@gf-purple-light: lighten(@gf-purple, 50%);
+@black: #000000;
+@off-white: #FBF7F5;
+@white: #ffffff;
+
+@mythic: gold;
+@legendary: orangered;
+@epic: purple;
+@rare: blue;
+@uncommon: green;
+@common: #696969;
+
+html {
+	font-size: 16px;
+}
+
+body {
+	background-color: @off-white;
+	padding: 0rem;
+	margin: 0rem;
+	font-family: Bahnschrift, sans-serif;
+	font-size: 1rem;
+}
+
+h1, h2, h3 {
+	color: @gf-orange;
+}
+
+h1 {
+	font-size: 5rem;
+	margin: 0rem;
+}
+
+h2 {
+	font-size: 1.125rem;
+	margin: 0.125rem;
+	padding-left: 7px;
+	color: @black;
+}
+
+h3 {
+	margin: 0.125rem;
+	font-weight: bold;
+}
+
+p, label {
+	margin: 0rem;
+	font-size: 1rem;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0rem;
+	padding: 0rem;
+	margin-bottom: 0.5rem;
+}
+
+li {
+	margin: 0rem;
+	padding-bottom: 0.25rem;
+}
+
+input, select {
+	border: 2px solid @gf-purple-light;
+	border-radius: 0.25rem;
+}
+
+select {
+	width: 100%;
+}
+
+a.button {
+	display:inline-block;
+	padding:0.3rem 1.2rem;
+	margin:0 0.3rem 0.3rem 0;
+	border-radius:2rem;
+	box-sizing: border-box;
+	text-decoration:none;
+	font-size: 1rem;
+	font-family:Bahnschrift, sans-serif;
+	font-weight:bold;
+	color:@white;
+	background-color:@gf-orange;
+	text-align:center;
+	transition: all 0.2s;
+}
+
+a.button:hover {
+	background-color: @gf-orange-dark;
+}
+
+#footer {
+	bottom: 0rem;
+	margin: 0rem;
+	position: initial;
+	padding: 1rem;
+	width: 100%;
+	background-color: @gf-orange;
+	text-align: center;
+}
+
+#inventoryList {
+	font-size: 1rem;
+
+	.item-name {
+		font-size: 1rem;
+		font-weight: bold;
+		border-bottom: 0.125rem solid @gf-purple-light;
+		margin-bottom: 0.25rem;
+		margin-top: 1rem;
+	}
+}
+
+.container {
+	margin: 1rem;
+}
+
+.titles {
+	display: flex;
+	flex-direction: column;
+}
+
+.crate-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.row {
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	input {
+		width: 4rem;
+	}
+
+	input, a, p {
+		margin-right: 0.5rem;
+	}
+}
+
+.item {
+	flex-grow: 1;
+}
+
+.box {
+	padding: 0.5rem;
+	margin: 0.5rem;
+	border: 5px solid @gf-purple-light;
+	border-radius: 0.5rem;
+	background-color: @white;
+}
+
+.legend {
+	font-size: 1.125rem;
+	font-weight: bold;
+	background-color: @white;
+
+	ul {
+		list-style-type: none;
+		display: inline-flex;
+		margin: 0rem;
+		padding: 0rem;
+		font-weight: bold;
+	}
+	
+	li {
+		display:block;
+		padding:0.3rem 1.2rem;
+		margin:0 0.3rem 0.3rem 0;
+		border-radius:2rem;
+		box-sizing: border-box;
+		color:@white;
+	}
+
+	.mythic {
+		background-color: @mythic;
+	}
+	
+	.legendary {
+		background-color: @legendary
+	}
+	
+	.epic {
+		background-color: @epic
+	}
+	
+	.rare {
+		background-color: @rare
+	}
+	
+	.uncommon {
+		background-color: @uncommon
+	}
+	
+	.common {
+		background-color: @common
+	}
+}
+
+.storyButton {
+	margin: 1px;
+	width: 30%;
+}
+
+.footerList {
+	display: inline;
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0rem;
+}
+
+.footerListItem {
+	display: inline;
+	text-align: center;
+	padding: 0rem;
+	padding-left: 0rem;
+}
+
+.mythic {
+	color: @mythic;
+}
+
+.legendary {
+	color: @legendary
+}
+
+.epic {
+	color: @epic
+}
+
+.rare {
+	color: @rare
+}
+
+.uncommon {
+	color: @uncommon
+}
+
+.common {
+	color: @common
+}
