@@ -1,0 +1,92 @@
+body {
+	background-color: #ff9000;
+	padding: 0px;
+	margin: 0px;
+}
+
+h1 {
+	font: 72px Bahnschrift, sans-serif;
+	margin: 0px;
+}
+
+h2 {
+	font: 18px Bahnschrift;
+	margin: 2px;
+	padding-left: 7px;
+	border-bottom: 1px solid black;
+}
+
+h3 {
+	font: 16px Bahnschrift;
+	margin: 2px;
+	border-bottom: 1px solid black;
+}
+
+p {
+	font: 16px Bahnschrift, sans-serif;
+	margin: 0px;
+}
+
+ul {
+	font: 16px Bahnschrift, sans-serif;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 12px;
+}
+
+li {
+	margin: 0px;
+	padding: 4px;
+}
+
+input {
+	margin: 0px;
+}
+
+.box {
+	padding: 3px;
+	margin: 3px;
+	
+	border: 2px solid #d67800;
+	width: 30%;
+	font-family: Bahnschrift;
+	
+	float: left;
+	display: inline;
+}
+
+.storyButton {
+	float: left;
+	clear: left;
+	margin: 1px;
+	width: 30%;
+}
+
+.footerListItem {
+	display: inline;
+	text-align: center;
+	padding: 0px;
+	padding-left: 0px;
+}
+
+#footer {
+	bottom: 0px;
+	position: initial;
+	float: left;
+	
+	width: 100%;
+	background-color: #d67800;
+	text-align: center;
+}
+
+#footerList {
+	font: 16px Bahnschrift, sans-serif;
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0px;
+}
+
+#inventoryList {
+	font: 16px Bahnschrift, sans-serif;
+}
